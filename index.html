@@ -429,10 +429,12 @@
 
                     // Touch / Mouse Smooth Follow
                     if (touchX !== null && touchY !== null) {
+                        // タッチデバイス（スマホ）操作時は、指で飛行機が隠れないように少し上（Y軸マイナス方向）を目標位置にする
+                        const targetY = isTouchDevice ? (touchY - 55) : touchY;
                         const dx = touchX - this.x;
-                        const dy = touchY - this.y;
-                        this.x += dx * 0.15;
-                        this.y += dy * 0.15;
+                        const dy = targetY - this.y;
+                        this.x += dx * 0.2;
+                        this.y += dy * 0.2;
                     }
 
                     // Keep inside canvas bounds
